@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CitizenConnect - Add Service</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-city"></i>
+                CitizenConnect
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="login.html" id="loginNav">Login</a></li>
+                    <li><a href="services.html">All Services</a></li>
+                    <li><a href="add-service.html" class="active" id="addServiceNav" style="display: none;">Add
+                            Service</a></li>
+                </ul>
+                <div class="user-info" id="userInfo" style="display: none;">
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <span>Admin</span>
+                    <button class="logout-btn" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="page-content">
+        <div class="container">
+            <div class="add-service-form">
+                <h2 style="text-align: center; margin-bottom: 2rem;">
+                    <i class="fas fa-plus-circle" style="color: #667eea; margin-right: 10px;"></i>
+                    Add New Service
+                </h2>
+
+                <div id="successAlert" class="alert alert-success" style="display: none;">
+                    <i class="fas fa-check-circle" style="margin-right: 10px;"></i>
+                    Service added successfully!
+                </div>
+
+                <div id="accessDenied" class="alert"
+                    style="display: none; background: #f8d7da; color: #721c24; border-color: #f5c6cb;">
+                    <i class="fas fa-exclamation-triangle" style="margin-right: 10px;"></i>
+                    Access denied. Please login as admin to add services.
+                    <div style="margin-top: 10px;">
+                        <a href="login.html" class="btn" style="padding: 8px 20px; font-size: 0.9rem;">Login Here</a>
+                    </div>
+                </div>
+
+                <div id="addServiceForm">
+                    <div class="form-group">
+                        <label for="serviceName">Service Name *</label>
+                        <input type="text" id="serviceName" class="form-control" placeholder="Enter service name"
+                            required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="serviceCategory">Category *</label>
+                            <select id="serviceCategory" class="form-control" required>
+                                <option value="">Select Category</option>
+                                <option value="healthcare">Healthcare</option>
+                                <option value="safety">Safety & Security</option>
+                                <option value="education">Education</option>
+                                <option value="utilities">Utilities</option>
+                                <option value="transportation">Transportation</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="serviceStatus">Status</label>
+                            <select id="serviceStatus" class="form-control" required>
+                                <option value="operational">Operational</option>
+                                <option value="maintenance">Under Maintenance</option>
+                                <option value="offline">Offline</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="serviceAddress">Address *</label>
+                        <input type="text" id="serviceAddress" class="form-control" placeholder="Enter full address"
+                            required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="servicePhone">Phone Number</label>
+                            <input type="tel" id="servicePhone" class="form-control" placeholder="+1-555-0000">
+                        </div>
+                        <div class="form-group">
+                            <label for="serviceHours">Operating Hours</label>
+                            <input type="text" id="serviceHours" class="form-control"
+                                placeholder="e.g., 9:00 AM - 5:00 PM">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="serviceDescription">Description *</label>
+                        <textarea id="serviceDescription" class="form-control"
+                            placeholder="Enter detailed service description" required rows="4"></textarea>
+                    </div>
+
+                    <div style="display: flex; gap: 1rem;">
+                        <button onclick="addService()" class="btn" style="flex: 1;">
+                            <i class="fas fa-plus" style="margin-right: 8px;"></i>
+                            Add Service
+                        </button>
+                        <button onclick="clearAddServiceForm()" class="btn" style="flex: 1; background: #6c757d;">
+                            <i class="fas fa-eraser" style="margin-right: 8px;"></i>
+                            Clear Form
+                        </button>
+                    </div>
+
+                    <div style="margin-top: 2rem; text-align: center;">
+                        <a href="services.html" class="btn btn-secondary">
+                            <i class="fas fa-eye" style="margin-right: 8px;"></i>
+                            View All Services
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        // Check if user is logged in when page loads
+        document.addEventListener('DOMContentLoaded', function () {
+            const addServiceForm = document.getElementById('addServiceForm');
+            const accessDenied = document.getElementById('accessDenied');
+
+            if (!isLoggedIn) {
+                addServiceForm.style.display = 'none';
+                accessDenied.style.display = 'block';
+            } else {
+                addServiceForm.style.display = 'block';
+                accessDenied.style.display = 'none';
+            }
+        });
+
+        // Override the addService function to provide better feedback
+        function addService() {
+            if (!isLoggedIn) {
+                alert('Please login first to add services.');
+                window.location.href = 'login.html';
+                return;
+            }
+
+            const name = document.getElementById('serviceName').value.trim();
+            const category = document.getElementById('serviceCategory').value;
+            const status = document.getElementById('serviceStatus').value;
+            const address = document.getElementById('serviceAddress').value.trim();
+            const phone = document.getElementById('servicePhone').value.trim();
+            const hours = document.getElementById('serviceHours').value.trim();
+            const description = document.getElementById('serviceDescription').value.trim();
+
+            // Validation
+            if (!name || !category || !address || !description) {
+                alert('Please fill in all required fields marked with *');
+                return;
+            }
+
+            // Create new service
+            const newService = {
+                id: Math.max(...services.map(s => s.id)) + 1,
+                name: name,
+                category: category,
+                address: address,
+                phone: phone,
+                hours: hours || 'Contact for hours',
+                description: description,
+                status: status,
+                rating: 0
+            };
+
+            // Add to services array
+            services.push(newService);
+
+            // Save to localStorage
+            localStorage.setItem('services', JSON.stringify(services));
+
+            // Show success message
+            const successAlert = document.getElementById('successAlert');
+            successAlert.style.display = 'block';
+
+            // Clear form
+            clearAddServiceForm();
+
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                successAlert.style.display = 'none';
+            }, 5000);
+
+            // Scroll to top to show success message
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CitizenConnect - Home</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-city"></i>
+                CitizenConnect
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="login.html" id="loginNav">Login</a></li>
+                    <li><a href="services.html">All Services</a></li>
+                    <li><a href="add-service.html" id="addServiceNav" style="display: none;">Add Service</a></li>
+                </ul>
+                <div class="user-info" id="userInfo" style="display: none;">
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <span>Admin</span>
+                    <button class="logout-btn" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="page-content">
+        <div class="container">
+            <!-- Hero Section -->
+            <div class="hero">
+                <h1>Welcome to CitizenConnect</h1>
+                <p>Your one-stop solution for accessing city services, infrastructure information, and public amenities
+                </p>
+                <div style="margin-top: 2rem;">
+                    <a href="services.html" class="btn">Explore Services</a>
+                    <a href="login.html" class="btn btn-secondary" style="margin-left: 1rem;" id="heroLoginBtn">Admin
+                        Login</a>
+                </div>
+            </div>
+
+            <!-- Features Section -->
+            <div class="features">
+                <div class="feature-card">
+                    <i class="fas fa-hospital"></i>
+                    <h3>Healthcare Services</h3>
+                    <p>Find hospitals, clinics, and healthcare facilities with real-time availability and contact
+                        information.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Safety & Security</h3>
+                    <p>Access police stations, fire departments, and emergency services for your safety and security
+                        needs.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Education</h3>
+                    <p>Discover schools, libraries, and educational institutions with detailed information and ratings.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-tools"></i>
+                    <h3>Public Utilities</h3>
+                    <p>Monitor water, electricity, and waste management services with real-time status updates.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-bus"></i>
+                    <h3>Transportation</h3>
+                    <p>Get information about public transport, road conditions, and traffic management systems.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-comments"></i>
+                    <h3>Feedback System</h3>
+                    <p>Report issues, provide feedback, and help improve city services for everyone.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        // Additional homepage-specific functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            const heroLoginBtn = document.getElementById('heroLoginBtn');
+
+            // Check login status and update hero button
+            if (isLoggedIn && heroLoginBtn) {
+                heroLoginBtn.textContent = 'Admin Dashboard';
+                heroLoginBtn.href = 'add-service.html';
+            }
+        });
+    </script>
+</body>
+
+</html>
