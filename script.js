@@ -1,6 +1,4 @@
-// CitizenConnect - Shared JavaScript Functions
 
-// Global variables
 let isLoggedIn = localStorage.getItem('isLoggedIn') === 'true' || false;
 let services = JSON.parse(localStorage.getItem('services')) || [
     {
@@ -92,8 +90,6 @@ let services = JSON.parse(localStorage.getItem('services')) || [
         rating: 4.1
     }
 ];
-
-// Utility functions
 function saveToLocalStorage() {
     localStorage.setItem('services', JSON.stringify(services));
     localStorage.setItem('isLoggedIn', isLoggedIn.toString());
@@ -110,7 +106,6 @@ function getServiceIcon(category) {
     return icons[category] || 'building';
 }
 
-// Authentication functions
 function handleLogin() {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
@@ -146,8 +141,6 @@ function checkLoginStatus() {
         if (addServiceNav) addServiceNav.style.display = 'none';
     }
 }
-
-// Service management functions
 function renderServices(servicesToRender = services) {
     const servicesGrid = document.getElementById('servicesGrid');
     
@@ -216,12 +209,10 @@ function filterServices() {
 
     let filteredServices = services;
 
-    // Filter by category
     if (category !== 'all') {
         filteredServices = filteredServices.filter(service => service.category === category);
     }
 
-    // Filter by search term
     if (searchTerm) {
         filteredServices = filteredServices.filter(service => 
             service.name.toLowerCase().includes(searchTerm) ||
@@ -247,13 +238,11 @@ function addService() {
     const hours = document.getElementById('serviceHours').value;
     const description = document.getElementById('serviceDescription').value;
 
-    // Validation
     if (!name || !category || !address || !description) {
         alert('Please fill in all required fields.');
         return;
     }
 
-    // Create new service
     const newService = {
         id: services.length + 1,
         name: name,
@@ -266,19 +255,15 @@ function addService() {
         rating: 0
     };
 
-    // Add to services array
     services.push(newService);
     saveToLocalStorage();
 
-    // Show success message
     const successAlert = document.getElementById('successAlert');
     if (successAlert) {
         successAlert.style.display = 'block';
         
-        // Clear form
         clearAddServiceForm();
 
-        // Hide success message after 3 seconds
         setTimeout(() => {
             successAlert.style.display = 'none';
         }, 3000);
@@ -296,11 +281,9 @@ function clearAddServiceForm() {
     if (statusField) statusField.value = 'operational';
 }
 
-// Initialize functions
 function initializePage() {
     checkLoginStatus();
     
-    // Add event listeners
     const searchInput = document.getElementById('searchInput');
     if (searchInput) {
         searchInput.addEventListener('keyup', filterServices);
@@ -320,11 +303,9 @@ function initializePage() {
         });
     }
 
-    // Render services if on services page
     if (document.getElementById('servicesGrid')) {
         renderServices();
     }
 }
 
-// Run initialization when page loads
 document.addEventListener('DOMContentLoaded', initializePage);

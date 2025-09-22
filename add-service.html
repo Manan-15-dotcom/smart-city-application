@@ -10,11 +10,12 @@
 </head>
 
 <body>
-    <!-- Header -->
     <header class="header">
         <div class="container">
             <a href="index.html" class="logo">
-                <i class="fas fa-city"></i>
+                 <i class="">
+                    <img src="logo.jpeg" style="width: 24px;"/>
+                </i>
                 CitizenConnect
             </a>
             <nav>
@@ -38,7 +39,6 @@
         </div>
     </header>
 
-    <!-- Main Content -->
     <main class="page-content">
         <div class="container">
             <div class="add-service-form">
@@ -138,7 +138,6 @@
 
     <script src="script.js"></script>
     <script>
-        // Check if user is logged in when page loads
         document.addEventListener('DOMContentLoaded', function () {
             const addServiceForm = document.getElementById('addServiceForm');
             const accessDenied = document.getElementById('accessDenied');
@@ -152,7 +151,6 @@
             }
         });
 
-        // Override the addService function to provide better feedback
         function addService() {
             if (!isLoggedIn) {
                 alert('Please login first to add services.');
@@ -187,25 +185,19 @@
                 rating: 0
             };
 
-            // Add to services array
             services.push(newService);
 
-            // Save to localStorage
             localStorage.setItem('services', JSON.stringify(services));
 
-            // Show success message
             const successAlert = document.getElementById('successAlert');
             successAlert.style.display = 'block';
 
-            // Clear form
             clearAddServiceForm();
 
-            // Hide success message after 5 seconds
             setTimeout(() => {
                 successAlert.style.display = 'none';
             }, 5000);
 
-            // Scroll to top to show success message
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>

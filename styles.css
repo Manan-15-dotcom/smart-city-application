@@ -1,4 +1,4 @@
-/* CitizenConnect - Shared Styles */
+
 
 * {
     margin: 0;
@@ -19,7 +19,6 @@ body {
     padding: 0 20px;
 }
 
-/* Header Styles */
 .header {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
@@ -100,7 +99,6 @@ body {
     background: rgba(255, 255, 255, 0.3);
 }
 
-/* Button Styles */
 .btn {
     display: inline-block;
     padding: 12px 30px;
@@ -134,7 +132,6 @@ body {
     margin-top: 1rem;
 }
 
-/* Form Styles */
 .form-group {
     margin-bottom: 1.5rem;
 }
@@ -172,7 +169,6 @@ body {
     min-height: 100px;
 }
 
-/* Alert Styles */
 .alert {
     padding: 15px;
     margin-bottom: 20px;
@@ -186,13 +182,11 @@ body {
     border-color: #c3e6cb;
 }
 
-/* Page Content */
 .page-content {
     min-height: calc(100vh - 80px);
     padding: 2rem 0;
 }
 
-/* Hero Section */
 .hero {
     background: linear-gradient(rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23e0e7ff" width="1200" height="600"/><circle fill="%23c7d2fe" cx="200" cy="150" r="80"/><circle fill="%23a5b4fc" cx="800" cy="200" r="60"/><circle fill="%23818cf8" cx="1000" cy="400" r="70"/></svg>');
     color: white;
@@ -214,7 +208,6 @@ body {
     opacity: 0.9;
 }
 
-/* Features Grid */
 .features {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -246,7 +239,6 @@ body {
     color: #333;
 }
 
-/* Login Styles */
 .login-container {
     max-width: 400px;
     margin: 5rem auto;
@@ -267,7 +259,6 @@ body {
     margin-bottom: 1rem;
 }
 
-/* Services Styles */
 .services-header {
     display: flex;
     justify-content: space-between;
@@ -432,7 +423,6 @@ body {
     margin-right: 0.5rem;
 }
 
-/* Add Service Form */
 .add-service-form {
     max-width: 600px;
     margin: 0 auto;
@@ -442,7 +432,6 @@ body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .hero h1 {
         font-size: 2rem;

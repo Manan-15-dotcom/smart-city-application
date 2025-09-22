@@ -10,11 +10,12 @@
 </head>
 
 <body>
-    <!-- Header -->
     <header class="header">
         <div class="container">
             <a href="index.html" class="logo">
-                <i class="fas fa-city"></i>
+                <i class="">
+                    <img src="logo.jpeg" style="width: 24px;"/>
+                </i>
                 CitizenConnect
             </a>
             <nav>
@@ -93,11 +94,9 @@
 
     <script src="script.js"></script>
     <script>
-        // Additional homepage-specific functionality
         document.addEventListener('DOMContentLoaded', function () {
             const heroLoginBtn = document.getElementById('heroLoginBtn');
 
-            // Check login status and update hero button
             if (isLoggedIn && heroLoginBtn) {
                 heroLoginBtn.textContent = 'Admin Dashboard';
                 heroLoginBtn.href = 'add-service.html';

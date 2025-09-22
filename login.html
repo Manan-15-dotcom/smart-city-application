@@ -10,11 +10,12 @@
 </head>
 
 <body>
-    <!-- Header -->
     <header class="header">
         <div class="container">
             <a href="index.html" class="logo">
-                <i class="fas fa-city"></i>
+                 <i class="">
+                    <img src="logo.jpeg" style="width: 24px;"/>
+                </i>
                 CitizenConnect
             </a>
             <nav>
@@ -37,7 +38,6 @@
         </div>
     </header>
 
-    <!-- Main Content -->
     <main class="page-content">
         <div class="container">
             <div class="login-container">
@@ -59,7 +59,7 @@
                     </div>
                     <button onclick="handleLogin()" class="btn btn-block">Login</button>
                     <div style="margin-top: 1rem; text-align: center; color: #666; font-size: 0.9rem;">
-                        Demo credentials: <strong>admin</strong> / <strong>admin123</strong>
+                        <!-- Demo credentials: <strong>admin</strong> / <strong>admin123</strong> -->
                     </div>
                 </div>
             </div>
@@ -68,7 +68,6 @@
 
     <script src="script.js"></script>
     <script>
-        // Redirect if already logged in
         document.addEventListener('DOMContentLoaded', function () {
             if (isLoggedIn) {
                 window.location.href = 'add-service.html';
